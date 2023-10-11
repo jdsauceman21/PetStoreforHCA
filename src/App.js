@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import List from './List';
-import withListLoading from './withListLoading';
+import List from './Component/List';
+import withListLoading from './Component/withListLoading';
 
 function App() {
   const ListLoading = withListLoading(List);
