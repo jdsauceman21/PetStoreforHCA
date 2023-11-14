@@ -12,7 +12,11 @@ const AvailablePets = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched Data:", data);
-        setAvailablePets(data);
+        // Check if data is an array before filtering
+        if (Array.isArray(data)) {
+          const filteredPets = data.filter((pet) => pet.photoUrls && pet.photoUrls.length > 0);
+          setAvailablePets(filteredPets);
+        }
         setLoader(false);
       })
       .catch((error) => {

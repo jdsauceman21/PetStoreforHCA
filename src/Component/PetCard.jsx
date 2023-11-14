@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 
 const PetCard = ({ pet }) => {
-  // Assuming Swagger Petstore provides a 'photoUrls' property
-  const posterUrl = pet.photoUrls && pet.photoUrls.length > 0
-    ? pet.photoUrls[0]
-    : "https://https://petstore.swagger.io/#/";
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const posterUrl = isValidUrl(pet.photoUrls) ? pet.photoUrls : `https://petstore.swagger.io/pet/${pet.id}`;
 
   const detailsUrl = `/pet/${pet.id}`;
 
