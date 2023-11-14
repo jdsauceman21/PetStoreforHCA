@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Navbar from './Component/NavBar';
 import Home from './Component/Home';
 import SearchView from './Component/SearchView';
-import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);

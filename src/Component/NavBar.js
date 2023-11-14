@@ -51,17 +51,17 @@ const Navbar = ({ searchText, setSearchText }) => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Genre
+                Status
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/filler.html">
-                    Action
+                  <Link className="dropdown-item" to="/filler.htmlav">
+                    Available
                   </Link>
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/filler.html">
-                    Drama
+                    Pending
                   </Link>
                 </li>
                 <li>
@@ -69,7 +69,7 @@ const Navbar = ({ searchText, setSearchText }) => {
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/filler.html">
-                    Something else here
+                    Sold
                   </Link>
                 </li>
               </ul>
