@@ -1,4 +1,6 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const PetCard = ({ pet }) => {
   const isValidUrl = (url) => {
@@ -22,11 +24,14 @@ const PetCard = ({ pet }) => {
   return (
     <div className="col-md-4 col-12 my-4 p-2">
       <div className="card">
-        <img src={posterUrl} className="card-img-top" alt={pet.name} />
+        <img
+          src={posterUrl}
+          className="card-img-top"
+          alt={pet.name || "Pet Image"}
+        />
         <div className="card-body">
-          {/* <h5 className="card-title">{pet.category}</h5> */}
           <h5 className="card-title">{pet.name}</h5>
-          <h5 className="card-title">{pet.status}</h5>
+          <p>Status: {pet.status}</p>
           <Link to={detailsUrl} className="btn btn-primary">
             Pet details
           </Link>
@@ -34,6 +39,16 @@ const PetCard = ({ pet }) => {
       </div>
     </div>
   );
+};
+
+PetCard.propTypes = {
+  pet: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    photoUrls: PropTypes.arrayOf(PropTypes.string),
+    // Add other properties as needed
+  }).isRequired,
 };
 
 export default PetCard;

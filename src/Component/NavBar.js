@@ -3,15 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 const Navbar = ({ searchText, setSearchText }) => {
   const navigate = useNavigate();
 
-  const updateSearchText = (e) => {
-    navigate('/search');
-    setSearchText(e.target.value.trim());
-  };
-
-  const searchBtn = (e) => {
+  const handleSearch = (e) => {
+    const trimmedSearchText = e.target.value.trim();
     e.preventDefault();
-    navigate("/search");
-    setSearchText(e.target.value.trim());
+    navigate('/search');
+    setSearchText(trimmedSearchText);
   };
 
   return (
@@ -36,11 +32,6 @@ const Navbar = ({ searchText, setSearchText }) => {
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/Home">
                 Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/Cat">
-                Pet
               </Link>
             </li>
             <li className="nav-item dropdown">
@@ -87,16 +78,16 @@ const Navbar = ({ searchText, setSearchText }) => {
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
-              type="search"
+              type="text"
               placeholder="Search"
               aria-label="Search"
               value={searchText}
-              onChange={updateSearchText}
+              onChange={handleSearch}
             />
             <button
               className="btn btn-outline-success"
               type="submit"
-              onClick={searchBtn}
+              onClick={handleSearch}
             >
               Search
             </button>
