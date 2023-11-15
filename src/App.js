@@ -1,29 +1,61 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './Component/NavBar';
 import Home from './Component/Home';
 import SearchView from './Component/SearchView';
+import LoginPage from './Component/LoginPage';
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (searchText) {
-      fetch(`https://petstore.swagger.io/v2/pet/findByStatus?status=available`)
-        .then(response => response.json())
-        .then(data => {
-          setSearchResults(data);
-        });
-    }
-  }, [searchText]);
+    const userLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+    setLoggedIn(userLoggedIn);
+  }, []);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+    localStorage.setItem('userLoggedIn', 'true');
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    localStorage.setItem('userLoggedIn', 'false');
+  };
 
   return (
     <div>
-      <Navbar searchText={searchText} setSearchText={setSearchText} />
+      <Navbar
+        loggedIn={loggedIn}
+        searchText={searchText}
+        setSearchText={setSearchText}
+        onLogout={handleLogout}
+      />
       <Routes>
-        <Route path="/Home" element={<Home />} />
-        <Route path="/search" element={<SearchView keyword={searchText} searchResults={searchResults} />} />
+        <Route
+          path="/Home"
+          element={loggedIn ? <Home /> : <Navigate to="/LoginPage" />}
+        />
+        <Route
+          path="/LoginPage"
+          element={
+            <LoginPage
+              onLogin={handleLogin}
+              isLoggedIn={loggedIn}
+            />
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            loggedIn ? (
+              <SearchView keyword={searchText} />
+            ) : (
+              <Navigate to="/LoginPage" />
+            )
+          }
+        />
       </Routes>
     </div>
   );

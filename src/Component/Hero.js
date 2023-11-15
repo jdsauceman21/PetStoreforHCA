@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Hero = ({ text, backdrop }) => {
   const backgroundImage = backdrop
     ? `url(${backdrop})`

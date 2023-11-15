@@ -31,7 +31,6 @@ const PetCard = ({ pet }) => {
         />
         <div className="card-body">
           <h5 className="card-title">{pet.name}</h5>
-          <p>Status: {pet.status}</p>
           <Link to={detailsUrl} className="btn btn-primary">
             Pet details
           </Link>
@@ -45,9 +44,7 @@ PetCard.propTypes = {
   pet: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
-    photoUrls: PropTypes.arrayOf(PropTypes.string),
-    // Add other properties as needed
+    // other properties
   }).isRequired,
 };
 

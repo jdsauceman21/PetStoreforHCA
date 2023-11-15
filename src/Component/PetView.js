@@ -1,21 +1,38 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Hero from "./Hero";
 
 const PetView = () => {
   const { id } = useParams();
-  const [petDetails, setPetDetails] = useState({});
+  const [petDetails, setPetDetails] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("Fetching pet details for ID:", id);
     const petUrl = `https://petstore.swagger.io/v2/pet/${id}`;
 
     fetch(petUrl)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch pet details for ID ${id}`);
+        }
+        return res.json();
+      })
       .then((data) => {
         setPetDetails(data);
-        console.log(data);
+      })
+      .catch((error) => {
+        setError(error.message);
       });
   }, [id]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!petDetails) {
+    return <div>Loading...</div>;
+  }
 
   const posterPath = petDetails.photoUrls && petDetails.photoUrls.length > 0
     ? petDetails.photoUrls[0]
@@ -42,6 +59,7 @@ const PetView = () => {
             </ul>
             <strong>Status</strong>
             <p>{petDetails.status}</p>
+            {/* Add additional details as needed */}
           </div>
         </div>
       </div>

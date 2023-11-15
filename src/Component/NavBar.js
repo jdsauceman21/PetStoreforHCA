@@ -1,11 +1,11 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';
 
 const Navbar = ({ searchText, setSearchText }) => {
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    const trimmedSearchText = e.target.value.trim();
     e.preventDefault();
+    const trimmedSearchText = searchText.trim();
     navigate('/search');
     setSearchText(trimmedSearchText);
   };
@@ -20,7 +20,7 @@ const Navbar = ({ searchText, setSearchText }) => {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="filler.htmlnavbarSupportedContent"
+          data-bs-target="#navbarSupportedContent" // Corrected the data-bs-target value
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -30,28 +30,28 @@ const Navbar = ({ searchText, setSearchText }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/Home">
+              <Link className="nav-link" to="/Home">
                 Home
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
-                href="filler"
+                to="/filler"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 Status
-              </a>
+              </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/filler.htmlav">
+                  <Link className="dropdown-item" to="/filler">
                     Available
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/filler.html">
+                  <Link className="dropdown-item" to="/filler">
                     Pending
                   </Link>
                 </li>
@@ -59,36 +59,28 @@ const Navbar = ({ searchText, setSearchText }) => {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/filler.html">
+                  <Link className="dropdown-item" to="/filler">
                     Sold
                   </Link>
                 </li>
               </ul>
             </li>
             <li className="nav-item">
-              <Link
-                className="nav-link disabled"
-                aria-disabled="true"
-                to="/filler.html"
-              >
+              <Link className="nav-link disabled" to="/filler" aria-disabled="true">
                 Coming Soon
               </Link>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          <form className="d-flex" onSubmit={handleSearch}>
             <input
               className="form-control me-2"
               type="text"
               placeholder="Search"
               aria-label="Search"
               value={searchText}
-              onChange={handleSearch}
+              onChange={(e) => setSearchText(e.target.value)}
             />
-            <button
-              className="btn btn-outline-success"
-              type="submit"
-              onClick={handleSearch}
-            >
+            <button className="btn btn-outline-success" type="submit">
               Search
             </button>
           </form>
