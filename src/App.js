@@ -4,6 +4,7 @@ import Navbar from './Component/NavBar';
 import Home from './Component/Home';
 import SearchView from './Component/SearchView';
 import LoginPage from './Component/LoginPage';
+import './App.css';
 
 function App() {
   const [searchText, setSearchText] = useState('');
