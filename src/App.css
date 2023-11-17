@@ -1,14 +1,3 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  background: url('Image/PetStore.jpg') center/cover fixed; 
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Arial', sans-serif; 
-} */
-
 .App {
   text-align: center;
 }
@@ -37,6 +26,23 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.8); /* Adjust the background color and opacity */
+  padding: 20px; /* Adjust the padding as needed */
+  border-radius: 10px; /* Adjust the border radius for rounded corners */
+  width: 300px; /* Adjust the width of the login box */
+  margin: auto;
+  margin-top: 50px; /* Adjust the margin to center the box vertically */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url('Image/PetStore.jpg') center/cover fixed; 
+  height: 100vh;
+  font-family: 'Arial', sans-serif; 
 }
 
 @keyframes App-logo-spin {

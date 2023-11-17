@@ -62,10 +62,9 @@ const LoginPage = ({ onLogin, isLoggedIn }) => {
 
   const logout = () => {
     return new Promise((resolve, reject) => {
-      // Remove the unused 'logoutEndpoint' variable
+      
       resolve();
-      // Uncomment the line below to simulate an error during logout
-      // reject(new Error('Logout failed'));
+      
     });
   };
 
@@ -103,7 +102,7 @@ const LoginPage = ({ onLogin, isLoggedIn }) => {
             </button>
             <p>
               Don't have an account?{' '}
-              <Link to="/createaccount">Create one</Link>
+              <Link to="/CreateAccount">Create one</Link>
             </p>
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
