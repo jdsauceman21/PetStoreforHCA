@@ -70,33 +70,34 @@ const LoginPage = ({ onLogin, isLoggedIn }) => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div>
+      <div className="card">
         {isLoggedIn ? (
           <div>
-            <p>Welcome, {username}!</p>
-            <button onClick={handleLogout}>Logout</button>
+            {/* ... (existing code) */}
           </div>
         ) : (
           <div>
-            <label>
-              Username:
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              Password:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="off"
-              />
-            </label>
-            <br />
+            <div className="input-group">
+              <label>
+                Username:
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="input-group">
+              <label>
+                Password:
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="off"
+                />
+              </label>
+            </div>
             <button onClick={handleLogin} disabled={loading}>
               {loading ? 'Logging in...' : 'Login'}
             </button>

@@ -37,6 +37,21 @@
   margin-top: 50px; /* Adjust the margin to center the box vertically */
 }
 
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
